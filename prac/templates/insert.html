@@ -1,0 +1,16 @@
+<htmL>
+    <head>
+        <title>This is to post a new Object</title>
+    </head>
+
+    <body>
+        <form class="center" method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p}}
+
+            <button class ="btn" type="submit">Save</button>
+        </form>
+        
+    </body>
+</htmL>

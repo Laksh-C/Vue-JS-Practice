@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <title>Practice</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <div id="app">
+            
+        \
+            
+         
+    
+            
+        <div class="small-middle-container">
+            <table>
+                <tr>
+                    <th scope="row">Product Title</th>
+                    <th scope="row">Product Description</th>
+                    <th scope="row">Product Price</th>
+                </tr>
+                
+                
+                <tr v-for="product in products">
+                    <td>{% verbatim %}{{product.title }}{% endverbatim %}</td>
+                    <td>{% verbatim %}{{product.description }}{% endverbatim %}</td>
+                    <td>{% verbatim %}{{product.price }}{% endverbatim %}</td>
+                    
+                </tr>
+                
+                
+             
+            </table>
+        </div>
+        <form action="{% url 'postinfo' %}" method="post">
+            {% csrf_token %}
+            <div class="container">
+                <label for="title_name">Title</label>
+                <input type="text" class="form-control" id="title_name" name="title_name">
+
+                <label for="description_name">Description</label>
+                <input type="text" class="form-control" id="description_name" name="description_name">
+
+                <label for="price_name">Price</label>
+                <input type="text" class="form-control" id="price_name" name="price_name">
+                <button id="save" class="btn btn-primary span 2 display-4" type="submit">Insert</button>
+            </div>
+        </form>
+
+       
+                        
+    
+        </div>
+        </body>
+
+        <script src="https://unpkg.com/vue@3.0.7/dist/vue.global.js"></script>
+
+        <script>
+            const V = ({
+                data(){
+                    return{
+                        products: [
+
+                        {% for practice in object_list %}
+                        {
+                            "title": "{{ practice.title}}",
+                            "description": "{{ practice.description}}",
+                            "price": "{{ practice.price }}",
+
+                        },
+                        {% endfor %}
+
+                        ],
+
+                    
+                    }
+                },
+                
+                
+
+                methods:{
+
+                    func1(value){
+                        this.title_array.push(value);
+                    }
+
+                },
+
+            });
+
+            Vue.createApp(V).mount('#app')
+        </script>
+
+
+    <style>
+        table, th, td{
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .small-middle-container{
+            margin: auto;
+            width: 600px;
+        }
+    </style>
+</html>
